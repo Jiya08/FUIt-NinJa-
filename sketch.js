@@ -5,6 +5,7 @@ var gameState=1;
 
 var knife,fruit ,monster,fruitGroup,monsterGroup, score,r,randomFruit, position;
 var knifeImage , fruit1, fruit2 ,fruit3,fruit4, monsterImage, gameOverImage;
+var gameOverSound, knifeSound;
 
 function preload(){
   
@@ -17,6 +18,8 @@ function preload(){
   gameOverImage = loadImage("gameover.png")
 
   //load sound here
+  gameOverSound = loadSound("gameover.mp3");
+  knifeSound = loadSound("knifeSwoosh.mp3");
 }
 
 
@@ -63,7 +66,7 @@ function draw() {
       if(monsterGroup.isTouching(knife)){
         //add gameover sound here
         gameState=END;
-        gameOverImage.play();
+        gameOverSound.play();
         
         
         
@@ -80,8 +83,9 @@ function draw() {
       }
     }
     if(fruitGroup.isTouching(knife)){
+      knifeSound.play();
       fruitGroup.destroyEach();
-      knifeSWooshSound.play();
+      
     }
   }
   
